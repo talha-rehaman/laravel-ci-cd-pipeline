@@ -42,6 +42,9 @@
         </div>
     </section>
 
+    @if (dfsdfsafsdf)
+        
+    @endif
     <!-- Features Section -->
     <section id="features" class="py-20 bg-white">
         <div class="max-w-6xl mx-auto px-6 text-center">
