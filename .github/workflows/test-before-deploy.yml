@@ -1,35 +1,35 @@
-name: Test Laravel Code
- 
-on:
-  push:
-    branches:
-      - main   # jab bhi main branch pe push hoga
- 
-jobs:
-  test:
-    runs-on: ubuntu-latest
- 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
- 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
- 
-      - name: Install dependencies
-        run: composer install --no-interaction --prefer-dist --optimize-autoloader
- 
-      - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
- 
-      - name: Generate key
-        run: php artisan key:generate
- 
-      - name: Run syntax check
-        run: find app -name "*.php" -print0 | xargs -0 -n1 php -l
- 
-      - name: Run tests (optional)
-        run: php artisan test
- 
+  name: Test Laravel Code
+  
+  on:
+    push:
+      branches:
+        - master   # jab bhi main branch pe push hoga
+  
+  jobs:
+    test:
+      runs-on: ubuntu-latest
+  
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
+  
+        - name: Setup PHP
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: '8.2'
+  
+        - name: Install dependencies
+          run: composer install --no-interaction --prefer-dist --optimize-autoloader
+  
+        - name: Copy .env
+          run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+  
+        - name: Generate key
+          run: php artisan key:generate
+  
+        - name: Run syntax check
+          run: find app -name "*.php" -print0 | xargs -0 -n1 php -l
+  
+        - name: Run tests (optional)
+          run: php artisan test
+  
