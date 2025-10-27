@@ -27,7 +27,6 @@
             </a>
         </div>
     </header>
-
     <!-- Hero Section -->
     <section class="pt-28 pb-20 bg-gradient-to-b from-indigo-50 to-white text-center">
         <div class="max-w-4xl mx-auto">
