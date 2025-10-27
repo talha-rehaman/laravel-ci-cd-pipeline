@@ -1,4 +1,4 @@
-name: Laravel CI/CD
+name: Test Laravel Code
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -19,22 +20,21 @@ jobs:
           extensions: mbstring, bcmath, intl, pdo, sqlite, mysql
 
       - name: Install dependencies
-        run: composer install --no-interaction --prefer-dist
+        run: composer install --no-interaction --prefer-dist --optimize-autoloaders
 
-      - name: Copy env file
-        run: cp .env.example .env
-
-      - name: Generate key
-        run: php artisan key:generate
-
-      - name: Run Tests
-        run: php artisan test
-
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    if: success()
-    steps:
-      - name: Deploy to Server
+      - name: Copy .env
         run: |
-          ssh user@your-server "cd /path/to/project && git pull origin master && composer install --no-dev && php artisan migrate --force && php artisan optimize:clear"
+          cp .env.example .env
+          php artisan key:generate
+          # testing ke liye sqlite use karo
+          echo "DB_CONNECTION=sqlite" >> .env
+          echo "DB_DATABASE=:memory:" >> .env
+
+      - name: Cache Laravel configuration
+        run: php artisan config:cache
+
+      - name: Run syntax check
+        run: find app -name "*.php" -print0 | xargs -0 -n1 php -l
+
+      - name: Run tests
+        run: php artisan test --env=testing

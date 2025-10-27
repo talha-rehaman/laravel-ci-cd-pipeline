@@ -31,7 +31,7 @@
     <section class="pt-28 pb-20 bg-gradient-to-b from-indigo-50 to-white text-center">
         <div class="max-w-4xl mx-auto">
             <h1 class="text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
-                Build Smarter, Launch Faster with <span class="text-indigo-600">IbexStack</span>
+                Produce Smarter, Launch Faster with <span class="text-indigo-600">IbexStack</span>
             </h1>
             <p class="text-lg text-gray-600 mb-8">
                 Simplify your web development workflow with modern tools and automation. Deploy effortlessly with Git & hPanel integration.
